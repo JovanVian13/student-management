@@ -44,11 +44,22 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 ## Project Structure
 
 - `src/app` - Next.js app routes and layout
+  - `(dashboard)` - Route group for dashboard pages
+    - `mahasiswa` - Student management pages
+      - `[id]` - Dynamic route for individual student
+        - `edit` - Edit student page
+  - `globals.css` - Global styles
+  - `layout.tsx` - Root layout
+  - `page.tsx` - Home page
 - `src/components` - UI and feature components
+  - `layout` - Navigation components (navbar, sidebar)
+  - `mahasiswa` - Student-related components (table, search bar)
+  - `ui` - Shared UI primitives (button, input, modal, etc.)
 - `src/lib/store` - Zustand stores for student data
 - `src/lib/data` - Sample student data
 - `src/lib/types` - TypeScript models
-- `src/components/ui` - Shared UI primitives
+- `src/lib/utils` - Utility functions and constants
+- `src/lib/hooks` - Custom React hooks (pagination)
 
 ## Notes
 
