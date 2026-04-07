@@ -1,4 +1,3 @@
-// src/components/mahasiswa/MahasiswaTable.tsx
 "use client";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 
 interface MahasiswaTableProps {
-  data: Mahasiswa[]; // data yang sudah dipaginasi
+  data: Mahasiswa[];
 }
 
 export function MahasiswaTable({ data }: MahasiswaTableProps) {
@@ -20,28 +19,25 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleHapusClick = (id: number) => {
-    setSelectedId(id);   // simpan ID yang mau dihapus
-    setIsModalOpen(true); // buka modal
+    setSelectedId(id);
+    setIsModalOpen(true);
   };
 
   const handleConfirmHapus = () => {
-    if (selectedId) remove(selectedId); // hapus dari store
-    setIsModalOpen(false);              // tutup modal
-    setSelectedId(null);               // reset ID
+    if (selectedId) remove(selectedId);
+    setIsModalOpen(false);
+    setSelectedId(null);
   };
 
   return (
     <>
-      {/* Tabel */}
       <div className="overflow-x-auto rounded-lg border border-gray-200">
-        {/* overflow-x-auto = kalau tabel terlalu lebar, bisa scroll horizontal */}
         <table className="w-full text-sm">
-          
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
               {["NIM", "Nama", "Email", "Jurusan", "Aksi"].map((col) => (
-                <th
-                  key={col}
+                <th 
+                  key={col} 
                   className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider"
                 >
                   {col}
@@ -51,7 +47,6 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {/* Kalau data kosong */}
             {data.length === 0 ? (
               <tr>
                 <td colSpan={5} className="px-4 py-8 text-center text-gray-400">
@@ -92,7 +87,6 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
         </table>
       </div>
 
-      {/* Modal konfirmasi hapus */}
       <Modal
         isOpen={isModalOpen}
         title="Hapus Mahasiswa?"

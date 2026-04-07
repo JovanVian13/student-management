@@ -10,7 +10,7 @@ export interface Mahasiswa {
   nama: string;
   email: string;
   jurusan: Jurusan;
-  tanggal_lahir?: string;  // optional, pakai ?
+  tanggal_lahir?: string;
   created_at: string;
   updated_at: string;
 }

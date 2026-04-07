@@ -1,8 +1,6 @@
-// src/components/ui/Badge.tsx
 import { cn } from "@/lib/utils/cn";
 import type { Jurusan } from "@/lib/types/mahasiswa";
 
-// Map setiap jurusan ke warna Tailwind
 const JURUSAN_COLORS: Record<Jurusan, string> = {
   "Informatika":      "bg-blue-100 text-blue-700",
   "Sistem Informasi": "bg-purple-100 text-purple-700",

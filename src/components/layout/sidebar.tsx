@@ -1,27 +1,38 @@
-// src/components/layout/Sidebar.tsx
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { LayoutDashboard, Users, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { ROUTES } from "@/lib/utils/constants";
+import { Button } from "../ui/button";
+import { useAuthStore } from "@/lib/store/authStore";
 
-// Definisikan menu items
 const MENU_ITEMS = [
-  { label: "Dashboard", href: ROUTES.DASHBOARD, icon: "📊" },
-  { label: "Mahasiswa", href: ROUTES.MAHASISWA, icon: "🎓" },
+  { label: "Dashboard", href: ROUTES.DASHBOARD, icon: LayoutDashboard },
+  { label: "Mahasiswa", href: ROUTES.MAHASISWA, icon: Users },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  // pathname = URL halaman aktif sekarang, misal "/mahasiswa"
+  const { logout } = useAuthStore();
+  const router = useRouter();
+  
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
 
   return (
-    <aside className="w-64 bg-gray-900 min-h-screen p-4">
+    <aside className="w-64 bg-gray-900 h-screen p-4 text-white flex flex-col">
       
-      <nav className="flex flex-col gap-1 mt-4">
+      <div className="mb-8 px-3">
+        <h1 className="text-xl font-bold">Kampus Admin</h1>
+      </div>
+
+      <nav className="flex flex-col gap-1">
         {MENU_ITEMS.map((item) => {
-          // Cek apakah menu ini sedang aktif
-          const isActive = pathname.startsWith(item.href);
+          const Icon = item.icon;
+          const isActive = pathname === item.href || pathname.startsWith(item.href);
 
           return (
             <Link
@@ -30,16 +41,27 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
                 isActive
-                  ? "bg-blue-600 text-white"           // aktif
-                  : "text-gray-400 hover:bg-gray-800 hover:text-white" // tidak aktif
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-400 hover:bg-gray-800 hover:text-white"
               )}
             >
-              <span>{item.icon}</span>
-              <span>{item.label}</span>
+              <Icon size={20} strokeWidth={2} />
+              <span className="font-medium">{item.label}</span>
             </Link>
           );
         })}
       </nav>
+
+      <div className="mt-auto pt-4 border-t border-gray-800">
+        <Button 
+          variant="ghost" 
+          className="w-full justify-start gap-3 text-gray-400 hover:text-white hover:bg-red-600/10 transition-all"
+          onClick={handleLogout}
+        >
+          <LogOut size={20} />
+          <span>Logout</span>
+        </Button>
+      </div>
 
     </aside>
   );

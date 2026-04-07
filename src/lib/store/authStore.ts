@@ -3,7 +3,6 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import type { User } from "@/lib/types/user";
 import usersData from "@/lib/data/users.json";
 
-// Helper untuk set cookie
 const setCookie = (value: string) => {
   document.cookie = `auth-storage=${value}; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 hari
 };
@@ -32,7 +31,6 @@ export const useAuthStore = create<AuthState>()(
         );
         if (found) {
           set({ user: found });
-          // Simpan ke cookie supaya middleware bisa baca
           setCookie(JSON.stringify({ state: { user: found } }));
           return true;
         }
@@ -59,7 +57,7 @@ export const useAuthStore = create<AuthState>()(
 
       logout: () => {
         set({ user: null });
-        deleteCookie(); // hapus cookie saat logout
+        deleteCookie();
       },
 
       isAuthenticated: () => !!get().user,
