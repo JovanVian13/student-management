@@ -1,4 +1,3 @@
-// src/app/(dashboard)/mahasiswa/page.tsx
 "use client";
 import { useState } from "react";
 import Link from "next/link";
@@ -24,13 +23,13 @@ export default function MahasiswaPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Data Mahasiswa</h1>
+          <h1 className="text-2xl font-bold text-[#116611]">Data Mahasiswa</h1>
           <p className="text-gray-500 mt-1 text-sm">
             Total {filtered.length} mahasiswa ditemukan
           </p>
         </div>
         <Link href="/mahasiswa/tambah">
-          <Button>+ Tambah Mahasiswa</Button>
+          <Button style={{ backgroundColor: '#116611' }} className="hover:opacity-90 text-white">+ Tambah Mahasiswa</Button>
         </Link>
       </div>
 

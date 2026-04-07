@@ -97,19 +97,19 @@ export default function EditMahasiswaPage() {
       <div className="flex flex-col gap-4">
         <Link 
           href="/mahasiswa" 
-          className="group flex items-center text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors w-fit"
+          className="group flex items-center text-sm font-medium text-gray-500 hover:text-[#116611] transition-colors w-fit"
         >
           <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
           Kembali ke Daftar
         </Link>
         
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Edit Mahasiswa</h1>
+          <h1 className="text-2xl font-bold text-[#116611] tracking-tight">Edit Mahasiswa</h1>
           <p className="text-gray-500 mt-1">Perbarui data {mhs.nama}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
+      <div className="bg-white rounded-xl border border-[#116611]/20 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
           <Input
@@ -118,6 +118,7 @@ export default function EditMahasiswaPage() {
             onChange={(e) => handleChange("nim", e.target.value)}
             error={errors.nim}
             required
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <Input
@@ -126,6 +127,7 @@ export default function EditMahasiswaPage() {
             onChange={(e) => handleChange("nama", e.target.value)}
             error={errors.nama}
             required
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <Input
@@ -135,6 +137,7 @@ export default function EditMahasiswaPage() {
             onChange={(e) => handleChange("email", e.target.value)}
             error={errors.email}
             required
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <div className="flex flex-col gap-1">
@@ -144,7 +147,7 @@ export default function EditMahasiswaPage() {
             <select
               value={form.jurusan}
               onChange={(e) => handleChange("jurusan", e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#116611]"
             >
               <option value="">Pilih jurusan...</option>
               {JURUSAN_OPTIONS.map((j) => (
@@ -161,20 +164,24 @@ export default function EditMahasiswaPage() {
             type="date"
             value={form.tanggal_lahir}
             onChange={(e) => handleChange("tanggal_lahir", e.target.value)}
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <div className="flex gap-3 pt-2">
-            <Button type="submit" isLoading={isLoading}>
+            <Button 
+              type="submit" 
+              isLoading={isLoading}
+              style={{ backgroundColor: '#116611' }}
+              className="hover:opacity-90 text-white"
+            >
               {isLoading ? "Menyimpan..." : "Simpan Perubahan"}
             </Button>
             <Link href={`/mahasiswa/${id}`}>
               <Button variant="secondary" type="button">Batal</Button>
             </Link>
           </div>
-
         </form>
       </div>
-
     </div>
   );
 }

@@ -72,14 +72,14 @@ export default function TambahMahasiswaPage() {
       <div className="flex flex-col gap-4">
         <Link 
           href="/mahasiswa" 
-          className="group flex items-center text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors w-fit"
+          className="group flex items-center text-sm font-medium text-gray-500 hover:text-[#116611] transition-colors w-fit"
         >
           <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
           Kembali ke Daftar
         </Link>
         
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Tambah Mahasiswa</h1>
+          <h1 className="text-2xl font-bold text-[#116611] tracking-tight">Tambah Mahasiswa</h1>
           <p className="text-gray-500 mt-1">Lengkapi formulir di bawah untuk mendaftarkan mahasiswa baru.</p>
         </div>
       </div>
@@ -93,6 +93,7 @@ export default function TambahMahasiswaPage() {
             onChange={(e) => handleChange("nim", e.target.value)}
             error={errors.nim}
             required
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <Input
@@ -102,6 +103,7 @@ export default function TambahMahasiswaPage() {
             onChange={(e) => handleChange("nama", e.target.value)}
             error={errors.nama}
             required
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <Input
@@ -112,6 +114,7 @@ export default function TambahMahasiswaPage() {
             onChange={(e) => handleChange("email", e.target.value)}
             error={errors.email}
             required
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <div className="flex flex-col gap-1.5">
@@ -121,7 +124,7 @@ export default function TambahMahasiswaPage() {
             <select
               value={form.jurusan}
               onChange={(e) => handleChange("jurusan", e.target.value)}
-              className={`border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
+              className={`border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#116611] transition-all ${
                 errors.jurusan ? "border-red-500 bg-red-50" : "border-gray-300"
               }`}
             >
@@ -144,13 +147,15 @@ export default function TambahMahasiswaPage() {
             type="date"
             value={form.tanggal_lahir}
             onChange={(e) => handleChange("tanggal_lahir", e.target.value)}
+            className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
           <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
             <Button 
               type="submit" 
               disabled={isLoading}
-              className="flex items-center gap-2 px-6"
+              style={{ backgroundColor: '#116611' }}
+              className="flex items-center gap-2 px-6 hover:opacity-90 text-white"
             >
               {isLoading ? (
                 "Menyimpan..."

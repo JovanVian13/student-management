@@ -6,6 +6,7 @@ import { useMahasiswaStore } from "@/lib/store/mahasiswaStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 interface MahasiswaTableProps {
   data: Mahasiswa[];
@@ -14,7 +15,6 @@ interface MahasiswaTableProps {
 export function MahasiswaTable({ data }: MahasiswaTableProps) {
   const { remove } = useMahasiswaStore();
 
-  // State untuk modal konfirmasi hapus
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,14 +31,14 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
 
   return (
     <>
-      <div className="overflow-x-auto rounded-lg border border-gray-200">
+      <div className="overflow-x-auto rounded-lg border border-[#116611]/20">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200">
+          <thead className="bg-[#116611]/5 border-b border-[#116611]/20">
             <tr>
               {["NIM", "Nama", "Email", "Jurusan", "Aksi"].map((col) => (
                 <th 
                   key={col} 
-                  className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  className="px-4 py-3 text-left text-xs font-semibold text-[#116611] uppercase tracking-wider"
                 >
                   {col}
                 </th>
@@ -46,7 +46,7 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-200">
+          <tbody className="divide-y divide-[#116611]/20">
             {data.length === 0 ? (
               <tr>
                 <td colSpan={5} className="px-4 py-8 text-center text-gray-400">
@@ -55,7 +55,7 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
               </tr>
             ) : (
               data.map((mhs) => (
-                <tr key={mhs.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={mhs.id} className="hover:bg-[#116611]/5 transition-colors">
                   <td className="px-4 py-3 font-mono text-gray-900">{mhs.nim}</td>
                   <td className="px-4 py-3 font-medium text-gray-900">{mhs.nama}</td>
                   <td className="px-4 py-3 text-gray-500">{mhs.email}</td>
@@ -64,18 +64,25 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <Link href={`/mahasiswa/${mhs.id}`}>
-                        <Button variant="ghost" size="sm">Detail</Button>
+                      <Link href={`/mahasiswa/${mhs.id}`} aria-label="Detail Mahasiswa">
+                        <Button variant="ghost" className="h-8 w-8 text-blue-600 p-0 hover:bg-blue-100">
+                          <Eye className="h-4 w-4" />
+                        </Button>
                       </Link>
-                      <Link href={`/mahasiswa/${mhs.id}/edit`}>
-                        <Button variant="secondary" size="sm">Edit</Button>
+
+                      <Link href={`/mahasiswa/${mhs.id}/edit`} aria-label="Edit Mahasiswa">
+                        <Button variant="ghost" className="h-8 w-8 text-yellow-600 p-0 hover:bg-yellow-50">
+                          <Pencil className="h-4 w-4" />
+                        </Button>
                       </Link>
+
                       <Button
-                        variant="danger"
-                        size="sm"
+                        variant="ghost"
+                        className="h-8 w-8 text-red-600 hover:bg-red-100 p-0"
+                        aria-label="Hapus Mahasiswa"
                         onClick={() => handleHapusClick(mhs.id)}
                       >
-                        Hapus
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                   </td>
@@ -83,7 +90,6 @@ export function MahasiswaTable({ data }: MahasiswaTableProps) {
               ))
             )}
           </tbody>
-
         </table>
       </div>
 

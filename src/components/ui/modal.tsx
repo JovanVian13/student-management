@@ -29,7 +29,7 @@ export function Modal({
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => { document.body.style.overflow = "unset"; };
+      return () => { document.body.style.overflow = "unset"; };
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -40,10 +40,10 @@ export function Modal({
         <div className="flex items-center gap-3 mb-2">
           {variant === "danger" && (
             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
-              <span className="text-red-600 text-lg">!</span>
+              <span className="text-red-600 text-3xl">!</span>
             </div>
           )}
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          <h3 className="text-lg font-semibold text-[#116611]">{title}</h3>
         </div>
 
         <p className="text-sm text-gray-600 mb-6">{message}</p>
