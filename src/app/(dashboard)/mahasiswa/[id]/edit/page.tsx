@@ -1,4 +1,3 @@
-// src/app/(dashboard)/mahasiswa/[id]/edit/page.tsx
 "use client";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -8,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { JURUSAN_OPTIONS } from "@/lib/utils/constants";
 import type { Jurusan } from "@/lib/types/mahasiswa";
+import { ChevronLeft } from "lucide-react";
 
 export default function EditMahasiswaPage() {
   const { id } = useParams();
@@ -24,7 +24,6 @@ export default function EditMahasiswaPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Isi form dengan data yang sudah ada saat halaman dibuka
   useEffect(() => {
     if (mhs) {
       setForm({
@@ -36,7 +35,7 @@ export default function EditMahasiswaPage() {
       });
     }
   }, [mhs]);
-  // Kalau mhs tidak ada, redirect
+
   if (!mhs) {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-4">
@@ -59,7 +58,6 @@ export default function EditMahasiswaPage() {
     if (!form.nim.trim()) newErrors.nim = "NIM wajib diisi";
     else if (data.some((m) => m.nim === form.nim && m.id !== mhs.id)) {
       newErrors.nim = "NIM sudah digunakan mahasiswa lain";
-      // Cek duplikat tapi KECUALI data milik sendiri
     }
 
     if (!form.nama.trim()) newErrors.nama = "Nama wajib diisi";
@@ -91,19 +89,23 @@ export default function EditMahasiswaPage() {
       tanggal_lahir: form.tanggal_lahir || undefined,
     });
 
-    router.push("/mahasiswa"); // kembali ke daftar setelah save
+    router.push("/mahasiswa");
   };
 
   return (
     <div className="flex flex-col gap-6 max-w-2xl">
-
-      <div className="flex items-center gap-4">
-        <Link href={`/mahasiswa/${id}`}>
-          <Button variant="ghost" size="sm">← Kembali</Button>
+      <div className="flex flex-col gap-4">
+        <Link 
+          href="/mahasiswa" 
+          className="group flex items-center text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors w-fit"
+        >
+          <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
+          Kembali ke Daftar
         </Link>
+        
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Edit Mahasiswa</h1>
-          <p className="text-gray-500 mt-1 text-sm">Perbarui data {mhs.nama}</p>
+          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Edit Mahasiswa</h1>
+          <p className="text-gray-500 mt-1">Perbarui data {mhs.nama}</p>
         </div>
       </div>
 

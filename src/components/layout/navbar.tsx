@@ -5,9 +5,9 @@ export function Navbar() {
   const { user } = useAuthStore();
 
   return (
-    <nav className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between">
+    <nav className="h-16 bg-white border-b border-[#116611]/20 px-6 flex items-center justify-between">
       
-      <h1 className="font-bold text-lg text-gray-900">
+      <h1 className="font-bold text-lg text-[#116611]">
         Sistem Manajemen Mahasiswa
       </h1>
 
