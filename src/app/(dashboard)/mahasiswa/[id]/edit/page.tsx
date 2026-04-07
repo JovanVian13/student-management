@@ -111,25 +111,26 @@ export default function EditMahasiswaPage() {
 
       <div className="bg-white rounded-xl border border-[#116611]/20 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              label="NIM"
+              value={form.nim}
+              onChange={(e) => handleChange("nim", e.target.value)}
+              error={errors.nim}
+              required
+              className="focus:ring-[#116611] focus:border-[#116611]"
+            />
 
-          <Input
-            label="NIM"
-            value={form.nim}
-            onChange={(e) => handleChange("nim", e.target.value)}
-            error={errors.nim}
-            required
-            className="focus:ring-[#116611] focus:border-[#116611]"
-          />
-
-          <Input
-            label="Nama Lengkap"
-            value={form.nama}
-            onChange={(e) => handleChange("nama", e.target.value)}
-            error={errors.nama}
-            required
-            className="focus:ring-[#116611] focus:border-[#116611]"
-          />
-
+            <Input
+              label="Nama Lengkap"
+              value={form.nama}
+              onChange={(e) => handleChange("nama", e.target.value)}
+              error={errors.nama}
+              required
+              className="focus:ring-[#116611] focus:border-[#116611]"
+            />
+          </div>
+          
           <Input
             label="Email"
             type="email"
@@ -167,7 +168,7 @@ export default function EditMahasiswaPage() {
             className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-3">
             <Button 
               type="submit" 
               isLoading={isLoading}

@@ -80,32 +80,33 @@ export default function TambahMahasiswaPage() {
         
         <div>
           <h1 className="text-2xl font-bold text-[#116611] tracking-tight">Tambah Mahasiswa</h1>
-          <p className="text-gray-500 mt-1">Lengkapi formulir di bawah untuk mendaftarkan mahasiswa baru.</p>
         </div>
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <Input
-            label="NIM"
-            placeholder="Contoh: 2021001"
-            value={form.nim}
-            onChange={(e) => handleChange("nim", e.target.value)}
-            error={errors.nim}
-            required
-            className="focus:ring-[#116611] focus:border-[#116611]"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              label="NIM"
+              placeholder="Contoh: 2021001"
+              value={form.nim}
+              onChange={(e) => handleChange("nim", e.target.value)}
+              error={errors.nim}
+              required
+              className="focus:ring-[#116611] focus:border-[#116611]"
+            />
 
-          <Input
-            label="Nama Lengkap"
-            placeholder="Masukkan nama lengkap"
-            value={form.nama}
-            onChange={(e) => handleChange("nama", e.target.value)}
-            error={errors.nama}
-            required
-            className="focus:ring-[#116611] focus:border-[#116611]"
-          />
-
+            <Input
+              label="Nama Lengkap"
+              placeholder="Masukkan nama lengkap"
+              value={form.nama}
+              onChange={(e) => handleChange("nama", e.target.value)}
+              error={errors.nama}
+              required
+              className="focus:ring-[#116611] focus:border-[#116611]"
+            />
+          </div>
+        
           <Input
             label="Email"
             type="email"
@@ -150,7 +151,7 @@ export default function TambahMahasiswaPage() {
             className="focus:ring-[#116611] focus:border-[#116611]"
           />
 
-          <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+          <div className="flex items-center gap-3 border-gray-100">
             <Button 
               type="submit" 
               disabled={isLoading}
